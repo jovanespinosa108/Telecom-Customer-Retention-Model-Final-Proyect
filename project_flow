@@ -1,0 +1,21 @@
+// Project Flow
+digraph {
+	rankdir=LR size="8,5"
+	A [label="Data
+(CSV)"]
+	B [label="Preparation
+& cleaning"]
+	C [label="EDA
+(Exploratory Data Analysis)"]
+	D [label="Modeling
+(ML Models)"]
+	E [label="Evaluation
+(Metrics)"]
+	F [label="Marketing
+Recomendations"]
+	A -> B
+	B -> C
+	C -> D
+	D -> E
+	E -> F
+}

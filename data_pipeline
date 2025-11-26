@@ -1,0 +1,21 @@
+// Data Pipeline
+digraph {
+	rankdir=TB size="6,8"
+	C1 [label="contract.csv"]
+	C2 [label="personal.csv"]
+	C3 [label="internet.csv"]
+	C4 [label="phone.csv"]
+	M1 [label="Join by customerID"]
+	M2 [label="Cleaning and
+Transformation"]
+	M3 [label="Feature
+Engineering"]
+	M4 [label="Final Dataset"]
+	C1 -> M1
+	C2 -> M1
+	C3 -> M1
+	C4 -> M1
+	M1 -> M2
+	M2 -> M3
+	M3 -> M4
+}

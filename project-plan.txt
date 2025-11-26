@@ -1,0 +1,201 @@
+Work Plan
+
+LIST OF QUESTIONS
+
+1. How are customers labeled as canceled? Do we base the cancellation on the EndDate column, 
+or is there another variable from which we obtain the information?
+
+2. Do we need to predict the next month's cancellations or cancellations by contract?
+
+3. To verify time-based variables starting on February 1, 2020, 
+do we need to use all available information or a specific period when training a model?
+
+4. To determine if it is profitable to retain a customer based on payment history, 
+do we have access to payment history and late payments?
+
+5. What metrics should we focus on for the evaluation? Recall for churners, 
+F1/AUC ratios, overall accuracy?
+
+
+Plan de Trabajo
+
+LISTA DE PREGUNTAS
+
+1. Los clientes que estan como cancelados como estan etiquetados? basamos la cancelacion 
+por medio de la columna EndDate o hay otra variable donde sacamos la informacion?
+
+2. El calculo de las cancelaciones se necesitan predecir las del proximo mes, 
+o las cancelaciones por contrato?
+
+3. Para verificar las variables temporales que empiezan desde el 1ro de febrero del 2020, 
+necesitamos usar toda la informacion disponible o un periodo en especifico al entrenar un modelo?
+
+4. Para saber si es rentable retener a un cliente por historial de pago, tenemos acceso al historial de pagos, atrasos?
+
+5. En que metrica debemos enfocarnos para la evaluacion? recall para churners, balances f1/AUC, precision global?
+
+
+WORK PLAN
+
+1. Data Preparation and Cleaning
+
+* Join the datasets (contract.csv, personal.csv, internet.csv, phone.csv) using the customerID key.
+
+* Check for missing values ​​and decide whether to delete, impute, or replace them.
+
+* Transform date variables (e.g., calculate the contract length in months).
+
+* Encode categorical variables (e.g., get_dummies or OneHotEncoder) and standardize numeric variables if necessary.
+
+* Generate a data pipeline flow diagram to document the cleaning process.
+
+
+2. Exploratory Data Analysis (EDA)
+
+* Analyze the distribution of the target variable (churn) and verify class balance.
+
+* Explore the relationship between churn and key variables:
+
+    * Contract type and duration
+
+    * Payment method
+
+    * Number of contracted services
+
+    * Client seniority
+
+* Create visualizations (bars, histograms, heatmaps) to illustrate patterns found.
+
+* Document relevant conclusions in each section of the EDA.
+
+🔎 Note: If there is a significant imbalance between classes 
+(e.g., clients canceling <20% of the total), consider resampling techniques 
+(oversampling with SMOTE, undersampling) or adjusting model parameters to address 
+the imbalance.
+
+
+3. Preparation for Modeling
+
+* Create relevant derived variables (e.g., total number of services, seniority, premium service usage).
+
+* Divide the data into training and test sets, using stratification to maintain the target class proportion.
+
+* Verify proper temporal separation if the problem is time-dependent.
+
+* Keep a log of the preprocessing pipeline for reproducibility.
+
+
+4. Modeling and Evaluation
+
+* Define the problem type: it is a binary classification problem (cancellation: yes/no).
+
+* Train different classification models:
+
+    * DummyClassifier as a baseline (sanity test)
+
+    * Logistic regression as an interpretable model
+
+    * Random Forest and/or Gradient Boosting (XGBoost, LightGBM, CatBoost) for best performance
+
+* Evaluate the models with appropriate metrics:
+
+    * F1 score (target ≥ 0.75)
+
+    * ROC-AUC, accuracy, recall (important to minimize false negatives)
+
+* Compare performance on the training and test sets to detect overfitting.
+
+* Tune hyperparameters (e.g., with GridSearchCV or RandomizedSearchCV) if necessary.
+
+
+5. Conclusions and Next Steps
+
+* Present the key EDA findings and model results in comparative tables and graphs.
+
+* Highlight the most influential factors in customer churn.
+
+* Prepare a simple flowchart (e.g., pipeline flow: data → cleaning → EDA → modeling → evaluation → recommendations).
+
+* Document the next steps (optimization, model deployment, monitoring).
+
+
+PLAN DE TRABAJO
+
+1. Preparación y limpieza de datos
+
+* Unir los datasets (contract.csv, personal.csv, internet.csv, phone.csv) usando la clave customerID.
+
+* Verificar valores faltantes y decidir si se eliminan, imputan o sustituyen.
+
+* Transformar las variables de fechas (por ejemplo, calcular la antigüedad del contrato en meses).
+
+* Codificar variables categóricas (ej. get_dummies o OneHotEncoder) y estandarizar variables numéricas si es necesario.
+
+* Generar un diagrama de flujo del pipeline de datos para documentar el proceso de limpieza.
+
+2. Análisis exploratorio de datos (EDA)
+
+* Analizar la distribución de la variable objetivo (churn) y verificar el balance de clases.
+
+* Explorar la relación entre churn y variables clave:
+
+    * Tipo y duración del contrato
+
+    * Método de pago
+
+    * Número de servicios contratados
+
+    * Antigüedad del cliente
+
+*Crear visualizaciones (barras, histogramas, heatmaps) para ilustrar patrones encontrados.
+
+* Documentar conclusiones relevantes en cada apartado del EDA.
+
+🔎 Nota: Si existe un desbalance significativo entre clases 
+(por ejemplo, clientes que cancelan <20% del total), considerar técnicas de resampling (oversampling con SMOTE, undersampling) 
+o ajustes de los parámetros de los modelos para manejar el desbalance.
+
+3. Preparación para el modelado
+
+* Crear variables derivadas relevantes (ej. número total de servicios, antigüedad, uso de servicios premium).
+
+* Dividir los datos en conjuntos de entrenamiento y prueba, usando estratificación para mantener la proporción de la clase objetivo.
+
+* Verificar la correcta separación temporal si es un problema dependiente del tiempo.
+
+* Mantener un registro del pipeline de preprocesamiento para reproducibilidad.
+
+4. Modelado y evaluación
+
+* Definir el tipo de problema: es un problema de clasificación binaria (cancelación: sí / no).
+
+* Entrenar diferentes modelos de clasificación:
+
+    * DummyClassifier como baseline (prueba de cordura)
+
+    * Regresión logística como modelo interpretable
+
+    * Random Forest y/o Gradient Boosting (XGBoost, LightGBM, CatBoost) para mejor desempeño
+
+* Evaluar los modelos con las métricas adecuadas:
+
+    * F1-score (meta ≥ 0.75)
+
+    * ROC-AUC, accuracy, recall (importante para minimizar falsos negativos)
+
+* Comparar rendimiento en el conjunto de entrenamiento y prueba para detectar overfitting.
+
+* Ajustar hiperparámetros (por ejemplo, con GridSearchCV o RandomizedSearchCV) si es necesario.
+
+5. Conclusiones y siguientes pasos
+
+* Presentar los hallazgos clave del EDA y los resultados de los modelos en tablas y gráficos comparativos.
+
+* Destacar los factores más influyentes en la cancelación de clientes.
+
+* Preparar un diagrama simple (por ejemplo, flujo del pipeline: datos → limpieza → EDA → modelado → evaluación → recomendaciones).
+
+* Documentar los próximos pasos (optimización, despliegue del modelo, monitoreo).
+
+
+
